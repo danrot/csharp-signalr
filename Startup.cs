@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace csharp_signalr
 {
@@ -12,6 +13,8 @@ namespace csharp_signalr
         {
             services.AddRazorPages();
             services.AddSignalR();
+
+            services.AddSingleton<Random>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

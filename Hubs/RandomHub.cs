@@ -3,13 +3,18 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace csharp_signalr.Hubs
 {
-    public class RandomHub : Hub
+    public class RandomHub : Hub<IRandomClient>
     {
-        private static Random random = new Random();
+        private Random Random { get; }
+
+        public RandomHub(Random random)
+        {
+            Random = random;
+        }
 
         public void GenerateNumber()
         {
-            Clients.All.SendAsync("ReceiveNumber", random.Next(0, 100));
+            Clients.All.ReceiveNumber(Random.Next(0, 100));
         }
     }
 }
