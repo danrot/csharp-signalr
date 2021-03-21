@@ -13,6 +13,7 @@ namespace csharp_signalr
         {
             services.AddRazorPages();
             services.AddSignalR();
+            services.AddControllers();
 
             services.AddSingleton<Random>();
         }
@@ -30,6 +31,7 @@ namespace csharp_signalr
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
                 endpoints.MapHub<RandomHub>("/RandomHub");
             });
         }

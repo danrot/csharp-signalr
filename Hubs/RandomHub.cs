@@ -12,9 +12,19 @@ namespace csharp_signalr.Hubs
             Random = random;
         }
 
-        public void GenerateNumber()
+        public class GenerateNumberParameters
         {
-            Clients.All.ReceiveNumber(Random.Next(0, 100));
+            public int? Min { get; set; }
+            public int? Max { get; set; }
+        }
+
+        public void GenerateNumber(GenerateNumberParameters parameters)
+        {
+            Clients.All.ReceiveNumber(
+                new IRandomClient.ReceiveNumberParameters() {
+                    Number = Random.Next(parameters.Min ?? 0, parameters.Max ?? 100)
+                }
+            );
         }
     }
 }

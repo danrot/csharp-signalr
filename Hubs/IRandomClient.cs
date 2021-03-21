@@ -4,6 +4,11 @@ namespace csharp_signalr.Hubs
 {
     public interface IRandomClient
     {
-        Task ReceiveNumber(int number);
+        public class ReceiveNumberParameters
+        {
+            public int Number { get; set; }
+        }
+
+        Task ReceiveNumber(ReceiveNumberParameters parameters);
     }
 }
